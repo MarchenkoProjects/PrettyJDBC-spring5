@@ -78,6 +78,7 @@
             <version>${prettyjdbc.version}</version>
         </dependency>
 
+        <!-- Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
