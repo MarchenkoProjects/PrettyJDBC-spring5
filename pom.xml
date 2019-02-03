@@ -9,7 +9,8 @@
     <packaging>jar</packaging>
 
     <name>PrettyJDBC-spring5</name>
-    <description>This project is a decorator PrettyJDBC library for easy integration into Spring Framework 5.</description>
+    <description>This project is a decorator PrettyJDBC library for easy integration into Spring Framework 5.
+    </description>
     <url>https://github.com/MarchenkoProjects/PrettyJDBC-spring5</url>
 
     <licenses>
@@ -91,6 +92,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${springframework.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
             <version>${springframework.version}</version>
             <optional>true</optional>
         </dependency>
