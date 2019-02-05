@@ -12,11 +12,10 @@ import org.springframework.transaction.support.DefaultTransactionStatus;
 
 /**
  * Standard {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * for a single specific {@link com.github.marchenkoprojects.prettyjdbc.SessionFactory}.
+ * for a single specific {@link SessionFactory}.
  *
  * @author Oleg Marchenko
  */
-
 public class InternalPlatformTransactionManager extends AbstractPlatformTransactionManager {
 
     private SessionFactory sessionFactory;

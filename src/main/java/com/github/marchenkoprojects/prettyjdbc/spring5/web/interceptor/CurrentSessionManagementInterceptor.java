@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Oleg Marchenko
  */
-
 public class CurrentSessionManagementInterceptor implements HandlerInterceptor {
 
     /**

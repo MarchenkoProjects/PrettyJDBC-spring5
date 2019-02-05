@@ -15,7 +15,6 @@ import javax.sql.DataSource;
  *
  * @see SessionFactory
  */
-
 public class LocalSessionFactoryBean implements FactoryBean<SessionFactory>, InitializingBean {
 
     private DataSource dataSource;

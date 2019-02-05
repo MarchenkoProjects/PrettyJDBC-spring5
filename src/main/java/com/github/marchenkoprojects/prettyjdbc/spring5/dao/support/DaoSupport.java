@@ -11,7 +11,6 @@ import org.springframework.util.Assert;
  *
  * @author Oleg Marchenko
  */
-
 public abstract class DaoSupport implements InitializingBean {
 
     private SessionFactory sessionFactory;
