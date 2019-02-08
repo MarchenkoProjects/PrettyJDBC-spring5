@@ -48,9 +48,19 @@ public class InternalPlatformTransactionManager extends AbstractPlatformTransact
     @Override
     protected void doBegin(Object transactionObject, TransactionDefinition transactionDefinition) throws TransactionException {
         Transaction transaction = (Transaction) transactionObject;
-        transaction.setReadOnly(transactionDefinition.isReadOnly());
-        transaction.setIsolationLevel(TransactionIsolationLevel.valueOf(transactionDefinition.getIsolationLevel()));
+        doSetTransactionReadOnly(transaction, transactionDefinition.isReadOnly());
+        doSetTransactionIsolationLevel(transaction, transactionDefinition.getIsolationLevel());
         transaction.begin();
+    }
+
+    private void doSetTransactionReadOnly(Transaction transaction, boolean readOnly) {
+        transaction.setReadOnly(readOnly);
+    }
+
+    private void doSetTransactionIsolationLevel(Transaction transaction, int isolationLevel) {
+        if (isolationLevel != TransactionDefinition.ISOLATION_DEFAULT) {
+            transaction.setIsolationLevel(TransactionIsolationLevel.valueOf(isolationLevel));
+        }
     }
 
     /**
