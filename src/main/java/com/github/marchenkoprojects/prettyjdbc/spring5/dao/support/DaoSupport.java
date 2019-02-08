@@ -15,6 +15,9 @@ public abstract class DaoSupport implements InitializingBean {
 
     private SessionFactory sessionFactory;
 
+    protected DaoSupport() {
+    }
+
     /**
      * Sets an active session factory.
      *
@@ -29,7 +32,7 @@ public abstract class DaoSupport implements InitializingBean {
      *
      * @return the current session
      */
-    public Session getSession() {
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
