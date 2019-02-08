@@ -2,7 +2,7 @@ package com.github.marchenkoprojects.prettyjdbc.spring5;
 
 import com.github.marchenkoprojects.prettyjdbc.SessionFactory;
 import com.github.marchenkoprojects.prettyjdbc.session.Session;
-import com.github.marchenkoprojects.prettyjdbc.spring5.transaction.InternalPlatformTransactionManager;
+import com.github.marchenkoprojects.prettyjdbc.spring5.transaction.PrettyJdbcTransactionManager;
 import com.github.marchenkoprojects.prettyjdbc.transaction.Transaction;
 import com.github.marchenkoprojects.prettyjdbc.transaction.TransactionStatus;
 import org.junit.After;
@@ -27,8 +27,8 @@ import java.lang.reflect.Method;
  * @author Oleg Marchenko
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = InternalPlatformTransactionManagerTest.TestConfig.class)
-public class InternalPlatformTransactionManagerTest {
+@ContextConfiguration(classes = PrettyJdbcTransactionManagerTest.TestConfig.class)
+public class PrettyJdbcTransactionManagerTest {
 
     @Configuration
     @EnableTransactionManagement
@@ -48,7 +48,7 @@ public class InternalPlatformTransactionManagerTest {
 
         @Bean
         public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
-            InternalPlatformTransactionManager transactionManager = new InternalPlatformTransactionManager();
+            PrettyJdbcTransactionManager transactionManager = new PrettyJdbcTransactionManager();
             transactionManager.setSessionFactory(sessionFactory);
             return transactionManager;
         }

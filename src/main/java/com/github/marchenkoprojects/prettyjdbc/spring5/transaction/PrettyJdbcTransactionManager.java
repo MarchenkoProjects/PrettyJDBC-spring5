@@ -16,7 +16,7 @@ import org.springframework.transaction.support.DefaultTransactionStatus;
  *
  * @author Oleg Marchenko
  */
-public class InternalPlatformTransactionManager extends AbstractPlatformTransactionManager {
+public class PrettyJdbcTransactionManager extends AbstractPlatformTransactionManager {
 
     private SessionFactory sessionFactory;
 
