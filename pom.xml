@@ -64,6 +64,8 @@
         <prettyjdbc.version>0.3</prettyjdbc.version>
         <servlet.version>4.0.0</servlet.version>
         <springframework.version>5.0.0.RELEASE</springframework.version>
+        <hsqldb.version>2.4.1</hsqldb.version>
+        <junit.version>4.12</junit.version>
 
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -126,6 +128,26 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
             <optional>true</optional>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
