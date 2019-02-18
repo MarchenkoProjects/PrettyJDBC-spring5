@@ -3,6 +3,7 @@ package com.github.marchenkoprojects.prettyjdbc.spring5.dao.support;
 import com.github.marchenkoprojects.prettyjdbc.SessionFactory;
 import com.github.marchenkoprojects.prettyjdbc.session.Session;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 /**
@@ -23,6 +24,7 @@ public abstract class DaoSupport implements InitializingBean {
      *
      * @param sessionFactory active session factory
      */
+    @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -31,6 +33,7 @@ public abstract class DaoSupport implements InitializingBean {
      * Retrieves and returns the current {@link Session} object.
      *
      * @return the current session
+     * @see Session
      */
     protected Session getSession() {
         return sessionFactory.getCurrentSession();
@@ -40,7 +43,7 @@ public abstract class DaoSupport implements InitializingBean {
      * {@inheritDoc}
      */
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         Assert.notNull(sessionFactory, "Property 'sessionFactory' is required");
     }
 }
