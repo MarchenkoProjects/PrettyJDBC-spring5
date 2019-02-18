@@ -40,10 +40,10 @@ public class PrettyJdbcTransactionManagerTest {
         }
 
         @Bean
-        public SessionFactory sessionFactory(DataSource dataSource) {
+        public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
             LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
             localSessionFactoryBean.setDataSource(dataSource);
-            return localSessionFactoryBean.getObject();
+            return localSessionFactoryBean;
         }
 
         @Bean
