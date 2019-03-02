@@ -1,5 +1,5 @@
 # Integrating PrettyJDBC with Spring 5
-[![](https://img.shields.io/maven-central/v/com.github.marchenkoprojects/prettyjdbc-spring5.svg?style=flat&colorB=brightgreen)](https://search.maven.org/artifact/com.github.marchenkoprojects/prettyjdbc-spring5/0.4/jar)
+[![](https://img.shields.io/maven-central/v/com.github.marchenkoprojects/prettyjdbc-spring5.svg?style=flat&colorB=brightgreen)](https://search.maven.org/artifact/com.github.marchenkoprojects/prettyjdbc-spring5/0.4.1/jar)
 
 PrettyJDBC offers a set of Spring integrations that allow it to be used as a full-featured library for the data access layer in Spring applications.
 
@@ -10,12 +10,12 @@ PrettyJDBC offers a set of Spring integrations that allow it to be used as a ful
 <dependency>
     <groupId>com.github.marchenkoprojects</groupId>
     <artifactId>prettyjdbc-spring5</artifactId>
-    <version>0.4</version>
+    <version>0.4.1</version>
 </dependency>
 ```
 **Gradle:**
 ```groovy
-compile 'com.github.marchenkoprojects:prettyjdbc-spring5:0.4'
+compile 'com.github.marchenkoprojects:prettyjdbc-spring5:0.4.1'
 ```
 
 #### Configuration ####
