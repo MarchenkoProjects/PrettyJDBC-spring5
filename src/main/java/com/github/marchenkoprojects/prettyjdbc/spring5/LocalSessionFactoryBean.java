@@ -15,6 +15,7 @@ import javax.sql.DataSource;
  *
  * @see SessionFactory
  */
+@Deprecated
 public class LocalSessionFactoryBean implements FactoryBean<SessionFactory>, InitializingBean {
 
     private DataSource dataSource;

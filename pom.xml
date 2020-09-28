@@ -5,7 +5,7 @@
 
     <groupId>com.github.marchenkoprojects</groupId>
     <artifactId>prettyjdbc-spring5</artifactId>
-    <version>0.4.1</version>
+    <version>0.5</version>
     <packaging>jar</packaging>
 
     <name>PrettyJDBC-spring5</name>
@@ -70,11 +70,11 @@
         <maven.plugin.javadoc.version>3.0.1</maven.plugin.javadoc.version>
         <maven.plugin.gpg.version>1.6</maven.plugin.gpg.version>
 
-        <prettyjdbc.version>0.4.1</prettyjdbc.version>
-        <servlet.version>4.0.0</servlet.version>
-        <springframework.version>5.0.0.RELEASE</springframework.version>
+        <prettyjdbc.version>0.5</prettyjdbc.version>
+        <servlet.version>4.0.1</servlet.version>
+        <springframework.version>5.2.9.RELEASE</springframework.version>
 
-        <hsqldb.version>2.4.1</hsqldb.version>
+        <hsqldb.version>2.5.1</hsqldb.version>
         <junit.version>4.12</junit.version>
     </properties>
 

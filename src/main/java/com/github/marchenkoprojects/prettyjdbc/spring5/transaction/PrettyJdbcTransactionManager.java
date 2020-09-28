@@ -20,11 +20,20 @@ public class PrettyJdbcTransactionManager extends AbstractPlatformTransactionMan
 
     private SessionFactory sessionFactory;
 
+    @Deprecated
+    public PrettyJdbcTransactionManager() {
+    }
+
+    public PrettyJdbcTransactionManager(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     /**
      * Sets an active session factory.
      *
      * @param sessionFactory active session factory
      */
+    @Deprecated
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -34,7 +43,7 @@ public class PrettyJdbcTransactionManager extends AbstractPlatformTransactionMan
      */
     @Override
     protected Object doGetTransaction() throws TransactionException {
-        Session currentSession = sessionFactory.getCurrentSession();
+        Session currentSession = sessionFactory.getSession();
         Transaction currentTransaction = currentSession.getTransaction();
         if (currentTransaction == null || currentTransaction.getStatus() == TransactionStatus.COMPLETED) {
             return currentSession.newTransaction();
@@ -69,7 +78,12 @@ public class PrettyJdbcTransactionManager extends AbstractPlatformTransactionMan
     @Override
     protected void doCommit(DefaultTransactionStatus transactionStatus) throws TransactionException {
         Transaction transaction = (Transaction) transactionStatus.getTransaction();
-        transaction.commit();
+        try {
+            transaction.commit();
+        }
+        finally {
+            doComplete();
+        }
     }
 
     /**
@@ -78,6 +92,15 @@ public class PrettyJdbcTransactionManager extends AbstractPlatformTransactionMan
     @Override
     protected void doRollback(DefaultTransactionStatus transactionStatus) throws TransactionException {
         Transaction transaction = (Transaction) transactionStatus.getTransaction();
-        transaction.rollback();
+        try {
+            transaction.rollback();
+        }
+        finally {
+            doComplete();
+        }
+    }
+
+    private void doComplete() {
+        SessionFactory.unbindSession();
     }
 }

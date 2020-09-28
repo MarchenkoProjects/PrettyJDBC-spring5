@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
  *
  * @author Oleg Marchenko
  */
+@Deprecated
 public abstract class DaoSupport implements InitializingBean {
 
     private SessionFactory sessionFactory;
@@ -36,7 +37,7 @@ public abstract class DaoSupport implements InitializingBean {
      * @see Session
      */
     protected Session getSession() {
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.getSession();
     }
 
     /**

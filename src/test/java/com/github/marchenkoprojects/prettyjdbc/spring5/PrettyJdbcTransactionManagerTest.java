@@ -5,7 +5,6 @@ import com.github.marchenkoprojects.prettyjdbc.session.Session;
 import com.github.marchenkoprojects.prettyjdbc.spring5.transaction.PrettyJdbcTransactionManager;
 import com.github.marchenkoprojects.prettyjdbc.transaction.Transaction;
 import com.github.marchenkoprojects.prettyjdbc.transaction.TransactionStatus;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,17 +39,13 @@ public class PrettyJdbcTransactionManagerTest {
         }
 
         @Bean
-        public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
-            LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
-            localSessionFactoryBean.setDataSource(dataSource);
-            return localSessionFactoryBean;
+        public SessionFactory sessionFactory(DataSource dataSource) {
+            return SessionFactory.create(() -> dataSource);
         }
 
         @Bean
         public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
-            PrettyJdbcTransactionManager transactionManager = new PrettyJdbcTransactionManager();
-            transactionManager.setSessionFactory(sessionFactory);
-            return transactionManager;
+            return new PrettyJdbcTransactionManager(sessionFactory);
         }
 
         @Bean
@@ -80,7 +75,7 @@ public class PrettyJdbcTransactionManagerTest {
         }
 
         private void checkTransaction() {
-            Session currentSession = sessionFactory.getCurrentSession();
+            Session currentSession = sessionFactory.getSession();
             Assert.assertNotNull(currentSession);
             Assert.assertTrue(currentSession.isOpen());
 
@@ -97,21 +92,21 @@ public class PrettyJdbcTransactionManagerTest {
 
     @Test
     public void testExecuteTransactionSuccessfully() {
-        Session currentSession = sessionFactory.getCurrentSession();
+        Session currentSession = sessionFactory.getSession();
         Assert.assertNotNull(currentSession);
+        Assert.assertTrue(currentSession.isOpen());
         Assert.assertNull(currentSession.getTransaction());
 
         transactionalService.executeTransactionSuccessfully();
 
-        Transaction currentTransaction = currentSession.getTransaction();
-        Assert.assertNotNull(currentTransaction);
-        Assert.assertEquals(currentTransaction.getStatus(), TransactionStatus.COMPLETED);
+        Assert.assertFalse(currentSession.isOpen());
     }
 
     @Test
     public void testExecuteTransactionUnsuccessfully() {
-        Session currentSession = sessionFactory.getCurrentSession();
+        Session currentSession = sessionFactory.getSession();
         Assert.assertNotNull(currentSession);
+        Assert.assertTrue(currentSession.isOpen());
         Assert.assertNull(currentSession.getTransaction());
 
         /**
@@ -125,13 +120,6 @@ public class PrettyJdbcTransactionManagerTest {
         catch (Exception e) {
         }
 
-        Transaction currentTransaction = currentSession.getTransaction();
-        Assert.assertNotNull(currentTransaction);
-        Assert.assertEquals(currentTransaction.getStatus(), TransactionStatus.COMPLETED);
-    }
-
-    @After
-    public void afterTest() {
-        SessionFactory.unbindSession();
+        Assert.assertFalse(currentSession.isOpen());
     }
 }
